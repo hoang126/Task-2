@@ -17,4 +17,6 @@
 
 
 #define newedit 123
+#define newedit 123
+
 #endif // IRQ_H
