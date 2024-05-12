@@ -7,12 +7,13 @@
 void uart1_init() {
     unsigned int r;
     /* initialize UART */
-    AUX_ENABLE |= 1;    //enable mini UART (UART1)
+    AUX_ENABLE = 1;    //enable mini UART (UART1)
     AUX_MU_CNTL = 0;    //stop transmitter and receiver
     AUX_MU_LCR = 3;     //8-bit mode (also enable bit 1 to be used for RBP3)
     AUX_MU_MCR = 0;     //clear RTS (request to send)
-    AUX_MU_IER = 0;     //disable interrupts
+    AUX_MU_IER = 0xD;     
     AUX_MU_IIR = 0xc6;  //enable and clear receive and transmit FIFOs (0xC6 = 0b11000110)
+    
     // system clock frequency = 250 MHz = 250*10^6 Hz
     AUX_MU_BAUD = 270;  //configure 115200 baud [system_clk_freq/(baud_rate*8) - 1]
     /* map UART1 to GPIO pins 14 and 15 */
