@@ -11,7 +11,7 @@ all: clean $(OBJFILES) ./obj/kernel8.img
 ./obj/%.o: ./src/%.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c $< -o $@
 
-# uart0
+# uart0xc 
 ./obj/uart0.o: ./src/uart/uart0.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/uart/uart0.c -o ./obj/uart0.o 
 
