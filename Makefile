@@ -19,6 +19,9 @@ all: clean $(OBJFILES) ./obj/kernel8.img
 ./obj/uart1.o: ./src/uart/uart1.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/uart/uart1.c -o ./obj/uart1.o 
 
+#timer
+./timer/timer.o: ./src/timer/timer.c
+	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/timer/timer.c -o ./timer/timer.o
 # mbox
 ./obj/mbox.o: ./src/mbox/mbox.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/mbox/mbox.c -o ./obj/mbox.o 
