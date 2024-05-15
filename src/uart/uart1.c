@@ -34,6 +34,7 @@ void uart1_init() {
     } //waiting 150 cycles
     GPPUDCLK0 = 0; //flush GPIO setup
     AUX_MU_CNTL = 3; //enable transmitter and receiver (Tx, Rx)
+    uart1_puts("completed");
 }
 /**
 * Send a character

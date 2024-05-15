@@ -1,6 +1,6 @@
 CFILES := $(wildcard ./src/*.c)
 OFILES = $(CFILES: ./src/%.c = ./obj/%.o)
-OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/uart0.o ./obj/uart1.o ./obj/mbox.o ./obj/framebf.o
+OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/uart0.o ./obj/uart1.o ./obj/mbox.o ./obj/framebf.o ./obj/timer.o
 GCCFLAGS := -Wall -O2 -ffreestanding -nostdlib -nostdinc
 
 all: clean $(OBJFILES) ./obj/kernel8.img 
@@ -20,8 +20,8 @@ all: clean $(OBJFILES) ./obj/kernel8.img
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/uart/uart1.c -o ./obj/uart1.o 
 
 #timer
-./timer/timer.o: ./src/timer/timer.c
-	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/timer/timer.c -o ./timer/timer.o
+./obj/timer.o: ./src/timer/timer.c
+	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/timer/timer.c -o ./obj/timer.o
 # mbox
 ./obj/mbox.o: ./src/mbox/mbox.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/mbox/mbox.c -o ./obj/mbox.o 
@@ -45,4 +45,4 @@ clean:
 	del .\obj\*.o .\obj\*.img .\obj\kernel8.elf .\obj\kernel8.img
 	
 run:
-	qemu-system-aarch64 -M raspi3 -kernel ./obj/kernel8.img -serial stdio -serial null
+	qemu-system-aarch64 -M raspi3 -kernel ./obj/kernel8.img -serial null -serial stdio
